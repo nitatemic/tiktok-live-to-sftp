@@ -24,4 +24,4 @@ RUN echo '{"sessionid_ss": "", "tt-target-idc": "useast2a"}' | \
 	jq --arg sessionid_ss "$COOKIE" '.sessionid_ss = $sessionid_ss' > cookies.json
 
 # Set the default command to run the script, using environment variable for the username
-CMD ["sh", "-c", "python main.py -room_id $ROOM_ID -mode automatic -ffmpeg -output videos"]
+CMD ["sh", "-c", "python main.py -user $USER -mode automatic -ffmpeg -output videos"]

@@ -21,23 +21,21 @@ services:
       context: ./rclone
       dockerfile: Dockerfile
       args:
-        RCLONE_CONFIG_TYPE: s3
-        RCLONE_CONFIG_PROVIDER: ${S3_PROVIDER}
-        RCLONE_CONFIG_ACCESS_KEY_ID: ${S3_ACCESS_KEY}
-        RCLONE_CONFIG_SECRET_ACCESS_KEY: ${S3_SECRET_KEY}
-        RCLONE_CONFIG_ENDPOINT: ${S3_ENDPOINT}
-        RCLONE_CONFIG_ACL: public-read
-        BUCKET_NAME: ${S3_BUCKET_NAME}
+        RCLONE_CONFIG_TYPE: sftp
+        RCLONE_CONFIG_HOST: ${SFTP_HOST}
+        RCLONE_CONFIG_USER: ${SFTP_USER}
+        RCLONE_CONFIG_PASS: ${SFTP_PASS}
+        RCLONE_CONFIG_PORT: ${SFTP_PORT-:22}
+        REMOTE_PATH: ${SFTP_REMOTE_PATH}
     volumes:
       - ./videos:/app/videos
     environment:
-      - RCLONE_CONFIG_TYPE=s3
-      - RCLONE_CONFIG_PROVIDER=${S3_PROVIDER}
-      - RCLONE_CONFIG_ACCESS_KEY_ID=${S3_ACCESS_KEY}
-      - RCLONE_CONFIG_SECRET_ACCESS_KEY=${S3_SECRET_KEY}
-      - RCLONE_CONFIG_ENDPOINT=${S3_ENDPOINT}
-      - RCLONE_CONFIG_ACL=${S3_ACL}
-      - BUCKET_NAME=${S3_BUCKET_NAME}
+      - RCLONE_CONFIG_TYPE=sftp
+      - RCLONE_CONFIG_HOST=${SFTP_HOST}
+      - RCLONE_CONFIG_USER=${SFTP_USER}
+      - RCLONE_CONFIG_PASS=${SFTP_PASS}
+      - RCLONE_CONFIG_PORT=${SFTP_PORT-:22}
+      - REMOTE_PATH=${SFTP_REMOTE_PATH}
     restart: always
     depends_on:
       - tiktok-recorder

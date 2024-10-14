@@ -5,7 +5,9 @@ upload_files() {
 	for file in /app/videos/*; do
 		if [ -f "$file" ]; then
 			echo "Uploading $file..."
-			rclone copy "$file" s3:$BUCKET_NAME
+			#!/bin/bash
+      # Upload videos to SFTP server
+      rclone copy /app/videos sftp:${REMOTE_PATH} --config /root/.config/rclone/rclone.conf
 			if [ $? -eq 0 ]; then
 				echo "Successfully uploaded: $file"
 				echo "$(date): Successfully uploaded $file" >> /app/upload.log
