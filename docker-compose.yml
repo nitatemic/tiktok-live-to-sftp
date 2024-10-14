@@ -12,7 +12,7 @@ services:
       - ./videos:/app/src/videos
     environment:
       - TIMEZONE=${TIMEZONE-:Etc/UTC}
-      - ROOM_ID=${TIKTOK_ROOM_ID}
+      - USER=${TIKTOK_USER}
       - COOKIE=${TIKTOK_COOKIE}
 
   uploader:
